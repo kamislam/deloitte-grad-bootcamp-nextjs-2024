@@ -1,0 +1,18 @@
+.container {
+  background-color: var(--mantine-primary-color-filled);
+  border-bottom: 1px solid var(--mantine-color-default-border);
+}
+
+.content {
+  width: var(--responsive-width);
+  min-height: 7dvh;
+  margin-inline: auto;
+}
+
+.imageContainer {
+  position: relative;
+  min-height: 7dvh;
+  width: 10dvw;
+  aspect-ratio: 16.9;
+  object-fit: contain;
+}
