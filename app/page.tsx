@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import { CurrentTime } from "@/types/CurrentTime";
 
 // components
 import { ProductsSection } from "./components/ProductsSection";
@@ -9,21 +10,22 @@ async function fetchProducts() {
   return response.json();
 }
 
-async function fetchNote() {
-  const response = await fetch(`${process.env.BASE_URL}/api/notes`, {
-    next: { revalidate: 5 },
-  });
+async function fetchCurrentTime() {
+  const response = await fetch(
+    "http://worldtimeapi.org/api/timezone/Australia/Sydney",
+    { cache: "no-store" }
+  );
 
   return response.json();
 }
 
 export default async function Home() {
   const { products } = (await fetchProducts()) || {};
-  const { message } = (await fetchNote()) || {};
+  const { datetime }: CurrentTime = (await fetchCurrentTime()) || {};
 
   return (
     <main className={styles.main}>
-      {message}
+      {datetime}
       <section>
         <ProductsSection products={products} />
       </section>
